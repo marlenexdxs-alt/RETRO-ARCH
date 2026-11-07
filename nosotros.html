@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros · RetroArch</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/retro-cyber.css">
+</head>
+<body>
+
+  <!-- Filtro CRT Scanlines y Viñeteado -->
+  <div class="crt-overlay" id="crt-overlay"></div>
+  <div class="crt-vignette"></div>
+
+  <!-- ==========================================
+       BARRA DE NAVEGACIÓN SUPERIOR FIJA (XMB PS3)
+       ========================================== -->
+  <header class="xmb-navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">👾</div>
+        <span>RetroArch</span>
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir Menú">☰</button>
+
+      <nav class="xmb-menu-wrapper" id="xmb-menu-wrapper">
+        <ul class="xmb-nav-list">
+          <li><a href="index.html" class="xmb-link"><span class="link-icon">🏠</span> Inicio</a></li>
+          <li><a href="catalogo.html?plataforma=PS1" class="xmb-link"><span class="link-icon">💿</span> PS1</a></li>
+          <li><a href="catalogo.html?plataforma=PS2" class="xmb-link"><span class="link-icon">📀</span> PS2</a></li>
+          <li><a href="catalogo.html?plataforma=PS3" class="xmb-link"><span class="link-icon">💎</span> PS3</a></li>
+          <li><a href="catalogo.html?plataforma=PS4" class="xmb-link"><span class="link-icon">⚡</span> PS4</a></li>
+          <li><a href="catalogo.html?plataforma=PS5" class="xmb-link"><span class="link-icon">🚀</span> PS5</a></li>
+          <li><a href="catalogo.html?plataforma=Retro" class="xmb-link"><span class="link-icon">🕹️</span> Retro</a></li>
+          <li><a href="historia.html" class="xmb-link"><span class="link-icon">📜</span> Historia</a></li>
+          <li><a href="catalogo.html?categoria=Accesorio" class="xmb-link"><span class="link-icon">🎧</span> Accesorios</a></li>
+          <li>
+            <a href="favoritos.html" class="xmb-link">
+              <span class="link-icon">❤️</span> Favoritos
+              <span id="fav-count" class="badge-count">0</span>
+            </a>
+          </li>
+          <li>
+            <a href="carrito.html" class="xmb-link">
+              <span class="link-icon">🛒</span> Carrito
+              <span id="cart-count" class="badge-count">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="catalogo.html" class="btn-nav-outline">Todos</a>
+        <a href="nosotros.html" class="btn-nav-outline" style="border-color: var(--neon-glow); color: #fff;">Nosotros</a>
+        <a href="contacto.html" class="btn-nav-outline">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       VISTA SOBRE NOSOTROS
+       ========================================== -->
+  <main class="container section">
+    <div class="section-header" style="text-align: center; align-items: center;">
+      <h1 class="section-title">
+        <span class="section-title-icon">🏛️</span> Acerca de RetroArch
+      </h1>
+      <p class="section-subtitle" style="max-width: 720px; margin: 0 auto;">
+        Un proyecto estudiantil de frontend dedicado a conmemorar la evolución histórica de las consolas de videojuegos y la preservación digital.
+      </p>
+    </div>
+
+    <!-- Bloque Explicativo del Proyecto Estudiantil -->
+    <div class="about-card" style="margin-bottom: 2.5rem; border-left: 4px solid var(--neon-glow);">
+      <h3>🎓 Proyecto Académico Demostrativo</h3>
+      <p>
+        <strong>RetroArch</strong> fue concebido y desarrollado exclusivamente con fines educativos como entrega final de desarrollo web. Su propósito fundamental es demostrar el dominio avanzado de <strong>HTML5 semántico, CSS3 moderno (Grid, Flexbox, Glassmorphism, animaciones y diseño responsivo)</strong> y <strong>JavaScript Vanilla ES6+</strong> (manipulación avanzada del DOM, filtrado dinámico de arreglos, almacenamiento en localStorage y control de estados), sin depender de librerías ni frameworks externos.
+      </p>
+      <p style="margin-top: 1rem; color: var(--lilac-light);">
+        <em>Nota de transparencia: Todos los precios exhibidos son simulados, los productos son ilustrativos y no se comercializa ni distribuye ningún software ni hardware comercial real.</em>
+      </p>
+    </div>
+
+    <!-- Misión y Visión -->
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>🎯 Nuestra Misión</h3>
+        <p>
+          Preservar y difundir el patrimonio cultural de los videojuegos a través de una interfaz moderna y atractiva que despierte la nostalgia retro de los jugadores, ofreciendo una experiencia visual inspirada en los menús que marcaron época, como la XMB de PlayStation 3 y RetroArch.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>👁️ Nuestra Visión</h3>
+        <p>
+          Convertirnos en un modelo de referencia para estudiantes y desarrolladores frontend en la creación de interfaces web inmersivas, elegantes, eficientes y completamente estáticas, demostrando el inmenso poder de las tecnologías nativas de la web.
+        </p>
+      </div>
+    </div>
+
+    <!-- Línea de Tiempo de Consolas -->
+    <div class="section-header" style="text-align: center; align-items: center; margin-top: 3rem;">
+      <h2 class="section-title">
+        <span class="section-title-icon">⏳</span> Línea de Tiempo de Consolas
+      </h2>
+      <p class="section-subtitle">
+        Un recorrido cronológico por los grandes hitos de la industria del videojuego.
+      </p>
+    </div>
+
+    <!-- Timeline: Atari 2600, NES, SNES, Sega Genesis, PS1, PS2, PS3, PS4 y PS5 -->
+    <div class="timeline">
+      <!-- 1. Atari 2600 (1977) -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-year">1977</div>
+          <h3 class="timeline-title">Atari 2600</h3>
+          <p class="timeline-desc">Popularizó los cartuchos intercambiables y trajo la magia arcade a las salas de estar de millones de hogares.</p>
+        </div>
+      </div>
+
+      <!-- 2. NES (1983) -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-year">1983</div>
+          <h3 class="timeline-title">Nintendo Entertainment System (NES)</h3>
+          <p class="timeline-desc">Rescató a la industria tras la crisis del 83 y consolidó a Super Mario Bros y The Legend of Zelda como íconos universales.</p>
+        </div>
+      </div>
+
+      <!-- 3. Sega Genesis (1988) -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-year">1988</div>
+          <h3 class="timeline-title">Sega Genesis (Mega Drive)</h3>
+          <p class="timeline-desc">Llevó la velocidad de los 16 bits, el procesamiento blast y a Sonic The Hedgehog a una histórica rivalidad por el mercado.</p>
+        </div>
+      </div>
+
+      <!-- 4. SNES (1990) -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-year">1990</div>
+          <h3 class="timeline-title">Super Nintendo (SNES)</h3>
+          <p class="timeline-desc">La era dorada de los 16 bits con gráficos en Modo 7, sonido estereofónico y clásicos insuperables de rol y plataformas.</p>
+        </div>
+      </div>
+
+      <!-- 5. PlayStation 1 (1994) -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-year">1994</div>
+          <h3 class="timeline-title">PlayStation 1 (PS1)</h3>
+          <p class="timeline-desc">Sony irrumpe con gráficos poligonales 3D y formato CD-ROM con bandas sonoras orquestales y cinemáticas memorables.</p>
+        </div>
+      </div>
+
+      <!-- 6. PlayStation 2 (2000) -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-year">2000</div>
+          <h3 class="timeline-title">PlayStation 2 (PS2)</h3>
+          <p class="timeline-desc">La consola más vendida de todos los tiempos (más de 155 millones), con lector DVD y un catálogo legendario inigualable.</p>
+        </div>
+      </div>
+
+      <!-- 7. PlayStation 3 (2006) -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-year">2006</div>
+          <h3 class="timeline-title">PlayStation 3 (PS3)</h3>
+          <p class="timeline-desc">Introdujo el formato Blu-ray Disc, gráficos HD a 1080p y la elegante interfaz CrossMediaBar (XMB) que inspira a PixelVault.</p>
+        </div>
+      </div>
+
+      <!-- 8. PlayStation 4 (2013) -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-year">2013</div>
+          <h3 class="timeline-title">PlayStation 4 (PS4)</h3>
+          <p class="timeline-desc">Dominó la octava generación con arquitectura x86, el botón Share y títulos cinematográficos como God of War y Uncharted 4.</p>
+        </div>
+      </div>
+
+      <!-- 9. PlayStation 5 (2020) -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-year">2020</div>
+          <h3 class="timeline-title">PlayStation 5 (PS5)</h3>
+          <p class="timeline-desc">La era de la inmersión total: discos SSD NVMe con tiempos de carga casi nulos, gatillos adaptativos DualSense y Ray Tracing.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón CTA final -->
+    <div style="text-align: center; margin-top: 3rem; margin-bottom: 2rem;">
+      <a href="catalogo.html" class="btn-neon">
+        <span>🎮</span> Explorar el Catálogo Completo
+      </a>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       PIE DE PÁGINA (FOOTER)
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-disclaimer">
+        RetroArch · Proyecto demostrativo y educativo · Catálogo de emulación y consolas retro.
+      </p>
+      <p class="footer-sub">
+        Inspirado en la interfaz XMB de PlayStation 3 y RetroArch. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/retro-engine.js"></script>
+</body>
+</html>

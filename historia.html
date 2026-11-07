@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historia de los Videojuegos Retro · RetroArch</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/retro-cyber.css">
+</head>
+<body>
+
+  <!-- Filtro CRT Scanlines y Viñeteado -->
+  <div class="crt-overlay" id="crt-overlay"></div>
+  <div class="crt-vignette"></div>
+
+  <!-- ==========================================
+       BARRA DE NAVEGACIÓN SUPERIOR FIJA (XMB PS3)
+       ========================================== -->
+  <header class="xmb-navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">👾</div>
+        <span>RetroArch</span>
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir Menú">☰</button>
+
+      <nav class="xmb-menu-wrapper" id="xmb-menu-wrapper">
+        <ul class="xmb-nav-list">
+          <li><a href="index.html" class="xmb-link"><span class="link-icon">🏠</span> Inicio</a></li>
+          <li><a href="catalogo.html?plataforma=PS1" class="xmb-link"><span class="link-icon">💿</span> PS1</a></li>
+          <li><a href="catalogo.html?plataforma=PS2" class="xmb-link"><span class="link-icon">📀</span> PS2</a></li>
+          <li><a href="catalogo.html?plataforma=PS3" class="xmb-link"><span class="link-icon">💎</span> PS3</a></li>
+          <li><a href="catalogo.html?plataforma=PS4" class="xmb-link"><span class="link-icon">⚡</span> PS4</a></li>
+          <li><a href="catalogo.html?plataforma=PS5" class="xmb-link"><span class="link-icon">🚀</span> PS5</a></li>
+          <li><a href="catalogo.html?plataforma=Retro" class="xmb-link"><span class="link-icon">🕹️</span> Retro</a></li>
+          <li><a href="historia.html" class="xmb-link active"><span class="link-icon">📜</span> Historia</a></li>
+          <li><a href="catalogo.html?categoria=Accesorio" class="xmb-link"><span class="link-icon">🎧</span> Accesorios</a></li>
+          <li>
+            <a href="favoritos.html" class="xmb-link">
+              <span class="link-icon">❤️</span> Favoritos
+              <span id="fav-count" class="badge-count">0</span>
+            </a>
+          </li>
+          <li>
+            <a href="carrito.html" class="xmb-link">
+              <span class="link-icon">🛒</span> Carrito
+              <span id="cart-count" class="badge-count">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="catalogo.html" class="btn-nav-outline">Todos</a>
+        <a href="nosotros.html" class="btn-nav-outline">Nosotros</a>
+        <a href="contacto.html" class="btn-nav-outline">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       CABECERA HERO DE HISTORIA RETRO
+       ========================================== -->
+  <main class="container section">
+    <div class="history-hero">
+      <span class="badge-retro">★ CRÓNICAS DEL VIDEOJUEGO ★</span>
+      <h1 class="pixel-font" style="font-size: 2.2rem; color: #fff; margin-bottom: 1.25rem; text-shadow: 0 0 15px var(--neon-violet);">
+        Historia de los Videojuegos Retro
+      </h1>
+      <p style="color: var(--lilac-light); font-size: 1.15rem; line-height: 1.6;">
+        Un fascinante viaje a través de los píxeles, los microchips de sonido y las revoluciones tecnológicas que transformaron simples circuitos en el mayor fenómeno cultural del planeta.
+      </p>
+    </div>
+
+    <!-- Tarjeta Introductoria -->
+    <div class="history-intro-card">
+      <h2 style="font-family: var(--font-retro); font-size: 1.1rem; color: var(--neon-glow); margin-bottom: 1rem;">
+        ¿Qué define a un videojuego como "Retro"?
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem;">
+        El término <strong>"Retro"</strong> en los videojuegos no se limita simplemente a los años transcurridos. Hace referencia a una filosofía artesanal de diseño donde los desarrolladores debían exprimir cada byte de memoria disponible, componer melodías memorables con apenas 4 canales de audio sintetizado (chiptunes) y crear mundos inmersivos a base de píxeles trazados a mano sobre tubos de rayos catódicos (pantallas CRT).
+      </p>
+      <div class="quote-box">
+        "Las limitaciones técnicas del hardware clásico no fueron un obstáculo, sino el catalizador supremo de la creatividad humana en el diseño de videojuegos."
+        <span class="quote-author">— Archivo Histórico de RetroArch</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         CRONOLOGÍA DE LAS GRANDES ERAS RETRO
+         ========================================== -->
+    <div class="eras-container">
+
+      <!-- ERA 1: ARCADE Y NACIMIENTO -->
+      <article class="era-card">
+        <div class="era-visual">
+          <div class="era-icon-huge">👾</div>
+          <span class="era-years-pill">1971 — 1982</span>
+          <span style="font-size: 0.8rem; color: var(--lilac-light);">La Era Electromecánica</span>
+        </div>
+        <div class="era-content">
+          <h2>1. La Era Dorada de los Salones Arcade</h2>
+          <div class="era-subtitle">El nacimiento del ocio interactivo y la moneda de 25 centavos</div>
+          <p>
+            Todo comenzó en locales ruidosos e iluminados por tubos de neón. Títulos pioneros como <em>Pong</em> (1972) de Nolan Bushnell y <em>Space Invaders</em> (1978) de Taito desataron un fenómeno social global. En 1980, Toru Iwatani creó <strong>Pac-Man</strong> con la intención de atraer a todo el público, convirtiéndose en el primer ícono pop de la industria.
+          </p>
+          <p>
+            Paralelamente, la <strong>Atari 2600</strong> (1977) llevó por primera vez los cartuchos intercambiables a los hogares, permitiendo disfrutar de aventuras como <em>Pitfall!</em> y <em>Asteroids</em> en la televisión de la sala.
+          </p>
+          <div class="era-highlights">
+            <span class="era-tag">🎯 Pac-Man</span>
+            <span class="era-tag">🚀 Space Invaders</span>
+            <span class="era-tag">🕹️ Atari 2600</span>
+            <span class="era-tag">🪙 Fichas Arcade</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ERA 2: EL GRAN CRASH Y LOS 8-BITS -->
+      <article class="era-card reverse">
+        <div class="era-content">
+          <h2>2. El Gran Crash de 1983 y el Renacer de los 8-Bits</h2>
+          <div class="era-subtitle">De la crisis total a la gloria de la Nintendo Entertainment System</div>
+          <p>
+            Hacia 1983, el mercado estadounidense colapsó debido a una saturación masiva de juegos mediocres y clones de baja calidad (simbolizado por el famoso entierro de cartuchos de <em>E.T.</em> en el desierto de Nuevo México). La industria parecía condenada a desaparecer.
+          </p>
+          <p>
+            Fue entonces cuando Nintendo, liderada por Hiroshi Yamauchi y el genio de <strong>Shigeru Miyamoto</strong>, lanzó la <strong>Famicom / NES</strong> con su estricto "Sello de Calidad Oficial". Con <strong>Super Mario Bros (1985)</strong>, se inventó el scroll lateral fluido y los controles milimétricos; con <em>The Legend of Zelda (1986)</em>, nació la exploración libre con guardado por batería; y en 1989, la pequeña <strong>Game Boy</strong> demostró que los videojuegos podían viajar en el bolsillo de cualquier persona.
+          </p>
+          <div class="era-highlights">
+            <span class="era-tag">🍄 Super Mario Bros</span>
+            <span class="era-tag">🗡️ The Legend of Zelda</span>
+            <span class="era-tag">📱 Game Boy</span>
+            <span class="era-tag">🛡️ Nintendo Seal of Quality</span>
+          </div>
+        </div>
+        <div class="era-visual">
+          <div class="era-icon-huge">🍄</div>
+          <span class="era-years-pill">1983 — 1989</span>
+          <span style="font-size: 0.8rem; color: var(--lilac-light);">La Revolución de 8-Bits</span>
+        </div>
+      </article>
+
+      <!-- ERA 3: LA GUERRA DE LOS 16-BITS -->
+      <article class="era-card">
+        <div class="era-visual">
+          <div class="era-icon-huge">⚡</div>
+          <span class="era-years-pill">1989 — 1995</span>
+          <span style="font-size: 0.8rem; color: var(--lilac-light);">Sega vs. Nintendo</span>
+        </div>
+        <div class="era-content">
+          <h2>3. La Batalla de los 16-Bits: Sonic vs. Mario</h2>
+          <div class="era-subtitle">Música estereofónica, Modo 7 y la rivalidad que forjó a la industria</div>
+          <p>
+            La década de los 90 trajo una de las competencias comerciales y artísticas más memorables de la historia. <strong>Sega Genesis (Mega Drive)</strong> apostó por una actitud rebelde, rápida y juvenil bajo el eslogan <em>"Genesis does what Nintendon't"</em>, con <strong>Sonic the Hedgehog (1991)</strong> corriendo a velocidades insólitas.
+          </p>
+          <p>
+            Nintendo respondió con la <strong>Super Nintendo (SNES)</strong>, equipada con una paleta de 32,768 colores, el chip de audio Sony SPC700 y efectos tridimensionales simulados con el <em>Modo 7</em>. Esta era nos regaló obras maestras atemporales como <em>Street Fighter II</em>, <em>Chrono Trigger</em> y los revolucionarios gráficos pre-renderizados en estaciones Silicon Graphics de <em>Donkey Kong Country</em>.
+          </p>
+          <div class="era-highlights">
+            <span class="era-tag">🦔 Sonic the Hedgehog</span>
+            <span class="era-tag">🥊 Street Fighter II</span>
+            <span class="era-tag">🦍 Donkey Kong Country</span>
+            <span class="era-tag">🎨 Modo 7</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ERA 4: EL SALTO A LAS 3D (32 Y 64-BITS) -->
+      <article class="era-card reverse">
+        <div class="era-content">
+          <h2>4. La Revolución Poligonal en 3D: Sony entra al Juego</h2>
+          <div class="era-subtitle">El CD-ROM de PlayStation y los entornos tridimensionales de Nintendo 64</div>
+          <p>
+            Tras una fallida colaboración entre Sony y Nintendo para crear un lector de CD para SNES, Ken Kutaragi lideró el desarrollo de la <strong>PlayStation 1 (1994)</strong>. El formato CD-ROM ofreció 650 MB de almacenamiento (frente a los escasos 16 MB de los cartuchos tradicionales), permitiendo orquestaciones reales, escenas de video cinematográfico (FMV) y voces digitalizadas.
+          </p>
+          <p>
+            Títulos como <strong>Final Fantasy VII (1997)</strong> y <strong>Metal Gear Solid (1998)</strong> demostraron que los videojuegos podían narrar historias adultas y complejas con la solemnidad del cine. Por su parte, la <strong>Nintendo 64 (1996)</strong> con <em>Super Mario 64</em> y <em>The Legend of Zelda: Ocarina of Time</em> inventó la cámara libre en 3D, el sistema de fijado de objetivos (Z-Targeting) y el stick analógico que todos los mandos modernos usan hoy en día.
+          </p>
+          <div class="era-highlights">
+            <span class="era-tag">💿 PlayStation 1</span>
+            <span class="era-tag">🐍 Metal Gear Solid</span>
+            <span class="era-tag">⚔️ Final Fantasy VII</span>
+            <span class="era-tag">⏳ Zelda Ocarina of Time</span>
+          </div>
+        </div>
+        <div class="era-visual">
+          <div class="era-icon-huge">💿</div>
+          <span class="era-years-pill">1994 — 2000</span>
+          <span style="font-size: 0.8rem; color: var(--lilac-light);">La Era Poligonal 3D</span>
+        </div>
+      </article>
+
+      <!-- ERA 5: PLAYSTATION 2 Y LA CUMBRE DEL DVD -->
+      <article class="era-card">
+        <div class="era-visual">
+          <div class="era-icon-huge">👑</div>
+          <span class="era-years-pill">2000 — 2006</span>
+          <span style="font-size: 0.8rem; color: var(--lilac-light);">La Consola Más Vendida</span>
+        </div>
+        <div class="era-content">
+          <h2>5. PlayStation 2 y la Consagración Global</h2>
+          <div class="era-subtitle">Más de 155 millones de consolas y la libertad de los mundos abiertos</div>
+          <p>
+            El lanzamiento de la <strong>PlayStation 2 (2000)</strong> marcó un hito irrepetible. Al incluir un reproductor de DVD a un precio más accesible que los reproductores dedicados de la época, la consola se transformó en el centro multimedia de millones de familias en todo el planeta.
+          </p>
+          <p>
+            Durante su reinado nacieron mecánicas que siguen vigentes: la libertad total de los mundos abiertos con <strong>GTA San Andreas</strong>, la visceralidad mitológica de Kratos en <strong>God of War</strong>, el lirismo artístico de <em>Shadow of the Colossus</em> y el terror psicológico más profundo con <em>Silent Hill 2</em>. Simultáneamente, la <strong>Game Boy Advance</strong> mantuvo vivo el legado del pixel art refinado.
+          </p>
+          <div class="era-highlights">
+            <span class="era-tag">🔥 God of War</span>
+            <span class="era-tag">🚗 GTA San Andreas</span>
+            <span class="era-tag">🗿 Shadow of the Colossus</span>
+            <span class="era-tag">📀 Lector DVD</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ERA 6: PRESERVACIÓN Y RETROARCH -->
+      <article class="era-card reverse">
+        <div class="era-content">
+          <h2>6. La Preservación Digital y la Cultura RetroArch</h2>
+          <div class="era-subtitle">El deber histórico de mantener vivos los clásicos para las futuras generaciones</div>
+          <p>
+            Con el paso de las décadas, los cartuchos sufren desgaste en sus baterías internas, los condensadores de las placas madre envejecen y los discos ópticos enfrentan la degradación física. Es aquí donde la preservación comunitaria y plataformas como <strong>RetroArch</strong> cobran un valor histórico incalculable.
+          </p>
+          <p>
+            Inspirada visualmente en la interfaz <strong>XMB (CrossMediaBar)</strong> de PlayStation 3, RetroArch permite emular con precisión de ciclo decenas de sistemas clásicos (desde la Atari 2600 hasta la PS2), aplicando filtros de sombreado CRT para recrear la calidez visual de los televisores de tubo de antaño y garantizando que las obras cumbre de la cultura interactiva nunca caigan en el olvido.
+          </p>
+          <div class="era-highlights">
+            <span class="era-tag">📺 Shaders CRT</span>
+            <span class="era-tag">💾 Preservación de ROMs</span>
+            <span class="era-tag">🌌 Interfaz XMB</span>
+            <span class="era-tag">🌐 Código Abierto</span>
+          </div>
+        </div>
+        <div class="era-visual">
+          <div class="era-icon-huge">🌌</div>
+          <span class="era-years-pill">Actualidad</span>
+          <span style="font-size: 0.8rem; color: var(--lilac-light);">Cultura de Preservación</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Banner Final de Acción -->
+    <div class="history-intro-card" style="text-align: center; border-left: none; border-top: 4px solid var(--neon-glow);">
+      <h3 class="pixel-font" style="font-size: 1.1rem; color: #fff; margin-bottom: 0.75rem;">
+        ¿Listo para revivir estas leyendas?
+      </h3>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.75rem auto;">
+        Explora las consolas y juegos que protagonizaron cada una de estas etapas históricas en nuestro catálogo interactivo.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="catalogo.html?plataforma=Retro" class="btn-neon">
+          <span>🕹️</span> Ver Colección Retro
+        </a>
+        <a href="catalogo.html?plataforma=PS1" class="btn-neon btn-neon-secondary">
+          <span>💿</span> Ver Clásicos de PS1
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       PIE DE PÁGINA (FOOTER)
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-disclaimer">
+        RetroArch · Proyecto demostrativo y educativo · Catálogo de emulación y consolas retro.
+      </p>
+      <p class="footer-sub">
+        Inspirado en la interfaz XMB de PlayStation 3 y RetroArch. Todos los derechos reservados a sus respectivos autores.
+      </p>
+    </div>
+  </footer>
+
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/retro-engine.js"></script>
+</body>
+</html>

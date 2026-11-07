@@ -1,0 +1,617 @@
+/* ==========================================================================
+   RETROARCH - RETRO CYBER ENGINE & REDMAGIC AESTHETICS
+   Auténtica paleta Retro Arcade (sin morado saturado) + Animaciones de Scroll,
+   Efectos CRT, HUD Gamer y Sprites de Pac-Man & Fantasmas
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. OVERRIDE DE PALETA DE COLORES: ADIÓS MORADO, HOLA AUTÉNTICO RETRO ARCADE
+   -------------------------------------------------------------------------- */
+:root {
+  /* Fondo Arcade Profundo (negro carbón con tinte azul/grafito de gabinete) */
+  --bg-dark: #07090e;
+  --bg-deep-purple: #0c0f17;
+  --bg-card: rgba(13, 17, 24, 0.88);
+  --bg-card-hover: rgba(20, 26, 38, 0.98);
+
+  /* Acentos Auténticos de Arcade & Consola Clásica */
+  --arcade-cyan: #00f0ff;      /* Inky Cyan / Tubo de Rayos Catódicos */
+  --arcade-red: #ff2a55;       /* Blinky Red / LED de encendido arcade */
+  --arcade-gold: #ffbe0b;      /* Pac-Man Gold / Moneda Coin */
+  --arcade-green: #00ff88;     /* Fósforo verde 8-Bit / Matrix */
+  --arcade-pink: #ff69b4;      /* Pinky Ghost */
+  --arcade-orange: #ff7700;    /* Clyde Ghost */
+
+  /* Reemplazo de variables existentes para transformar toda la tienda */
+  --neon-violet: var(--arcade-cyan);
+  --neon-glow: #38bdf8;
+  --lilac-light: #e0f2fe;
+  --border-violet: rgba(0, 240, 255, 0.22);
+  --border-glow: rgba(0, 240, 255, 0.65);
+  --shadow-neon: 0 0 25px rgba(0, 240, 255, 0.35), 0 0 45px rgba(255, 42, 85, 0.15);
+  --shadow-neon-sm: 0 0 12px rgba(0, 240, 255, 0.3);
+
+  /* Tipografías y transiciones RedMagic */
+  --font-retro: 'Press Start 2P', monospace, cursive;
+  --font-tech: 'Courier New', monospace;
+  --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fondo global con textura de rejilla arcade sutil */
+body {
+  background-color: var(--bg-dark) !important;
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, #111726 0%, #07090e 70%) !important;
+  background-size: 32px 32px, 32px 32px, 100% 100% !important;
+  color: #f1f5f9;
+}
+
+body::before {
+  display: none !important; /* Desactivar el degradado morado anterior */
+}
+
+/* --------------------------------------------------------------------------
+   2. FILTRO CRT SCANLINES INTERACTIVO (EFECTO TV ANTIGUA)
+   -------------------------------------------------------------------------- */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.28) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+
+.crt-overlay.crt-off {
+  opacity: 0;
+}
+
+/* Viñeteado de televisor de tubo */
+.crt-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99998;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.75);
+}
+
+/* --------------------------------------------------------------------------
+   3. HUD SUPERIOR Y BARRA DE CONTROL ESTILO REDMAGIC
+   -------------------------------------------------------------------------- */
+.retro-hud-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 1.5rem;
+  background: rgba(8, 11, 16, 0.92);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+  font-family: var(--font-retro);
+  font-size: 0.62rem;
+  letter-spacing: 0.5px;
+  color: var(--arcade-cyan);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 900;
+  overflow-x: auto;
+}
+
+.hud-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hud-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--arcade-green);
+  box-shadow: 0 0 8px var(--arcade-green);
+  animation: hudBlink 1.5s infinite ease-in-out;
+}
+
+@keyframes hudBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+.hud-btn {
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-retro);
+  font-size: 0.58rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hud-btn:hover {
+  background: var(--arcade-cyan);
+  color: #07090e;
+  box-shadow: 0 0 15px var(--arcade-cyan);
+  transform: translateY(-1px);
+}
+
+.hud-coin-btn {
+  background: rgba(255, 190, 11, 0.12);
+  border: 1px solid var(--arcade-gold);
+  color: var(--arcade-gold);
+}
+
+.hud-coin-btn:hover {
+  background: var(--arcade-gold);
+  color: #000;
+  box-shadow: 0 0 15px var(--arcade-gold);
+}
+
+/* --------------------------------------------------------------------------
+   4. HERO VIDEO & RETRO ENGINE HORIZON
+   -------------------------------------------------------------------------- */
+.hero-banner {
+  position: relative;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.85);
+  background: #06070a !important;
+}
+
+/* Video de fondo y Canvas Horizon */
+.hero-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+  filter: contrast(1.2) saturate(1.1);
+  transform: scale(1.05);
+}
+
+#retro-horizon-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(7, 9, 14, 0.4) 0%, rgba(7, 9, 14, 0.92) 85%);
+  z-index: 3;
+}
+
+/* Tarjeta central del Hero con estética RedMagic */
+.hero-banner-card {
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+  padding: 3.5rem 3rem !important;
+  background: rgba(10, 14, 20, 0.78) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(0, 240, 255, 0.35) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 0 50px rgba(0, 240, 255, 0.25), inset 0 0 30px rgba(0, 240, 255, 0.08) !important;
+  animation: heroCardFloat 6s ease-in-out infinite alternate !important;
+}
+
+/* Esquinas cibernéticas RedMagic */
+.hero-banner-card::before,
+.hero-banner-card::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--arcade-red);
+  pointer-events: none;
+}
+.hero-banner-card::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+.hero-banner-card::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+@keyframes heroCardFloat {
+  0% { transform: translateY(0px); box-shadow: 0 0 40px rgba(0, 240, 255, 0.2); }
+  100% { transform: translateY(-8px); box-shadow: 0 15px 60px rgba(0, 240, 255, 0.35); }
+}
+
+.hero-banner-card h1 {
+  font-family: var(--font-retro) !important;
+  font-size: 3.2rem !important;
+  letter-spacing: 2px;
+  color: #ffffff !important;
+  text-shadow: 
+    0 0 10px rgba(0, 240, 255, 0.9), 
+    0 0 30px rgba(0, 240, 255, 0.6),
+    0 0 50px rgba(255, 42, 85, 0.4) !important;
+}
+
+.hero-banner-card .badge-retro {
+  background: rgba(255, 42, 85, 0.15) !important;
+  border: 1px solid var(--arcade-red) !important;
+  color: #ff94a8 !important;
+}
+
+.btn-neon {
+  background: linear-gradient(135deg, #00f0ff 0%, #0284c7 100%) !important;
+  border: 1px solid #7dd3fc !important;
+  color: #07090e !important;
+  font-weight: 700;
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.6) !important;
+}
+
+.btn-neon:hover {
+  background: linear-gradient(135deg, #ff2a55 0%, #be123c 100%) !important;
+  border-color: #fda4af !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 35px rgba(255, 42, 85, 0.75) !important;
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   5. PAC-MAN & FANTASMAS FLOTANTES INTERACTIVOS
+   -------------------------------------------------------------------------- */
+.pacman-world {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+/* Fantasmas flotantes autónomos */
+.retro-ghost {
+  position: absolute;
+  width: 44px;
+  height: 48px;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: ghostBobbing 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5));
+}
+
+.retro-ghost:hover {
+  transform: scale(1.3) translateY(-6px);
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9));
+}
+
+@keyframes ghostBobbing {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  100% { transform: translateY(-16px) rotate(3deg); }
+}
+
+/* Pac-Man Parade: Cruzando la pantalla periódicamente */
+.pacman-parade {
+  position: absolute;
+  bottom: 40px;
+  left: -400px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  pointer-events: none !important;
+  z-index: 60;
+}
+
+.pacman-parade .pacman-chomper,
+.pacman-parade .retro-ghost {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+.pacman-chomper {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--arcade-gold);
+  position: relative;
+  box-shadow: 0 0 15px var(--arcade-gold);
+}
+
+.pacman-chomper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-dark);
+  clip-path: polygon(100% 74%, 50% 50%, 100% 26%);
+  animation: pacChomp 0.28s infinite linear alternate;
+}
+
+@keyframes pacChomp {
+  0% { clip-path: polygon(100% 50%, 50% 50%, 100% 50%); }
+  100% { clip-path: polygon(100% 85%, 50% 50%, 100% 15%); }
+}
+
+/* Puntos o Pellets de Pac-Man */
+.pacman-dot {
+  width: 9px;
+  height: 9px;
+  background: #ffeb99;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ffe066;
+  animation: dotGlow 1s infinite alternate;
+}
+
+@keyframes dotGlow {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* Puntuación flotante (+200 PTS) al hacer clic en un fantasma */
+.score-popup {
+  position: fixed;
+  font-family: var(--font-retro);
+  font-size: 0.8rem;
+  color: var(--arcade-gold);
+  text-shadow: 0 0 10px var(--arcade-gold);
+  pointer-events: none;
+  z-index: 9999;
+  animation: floatScore 1s forwards ease-out;
+}
+
+@keyframes floatScore {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-50px) scale(1.3); }
+}
+
+/* --------------------------------------------------------------------------
+   6. NAVEGADOR DE CATEGORÍAS ESTILO REDMAGIC (INTERACTIVO & STICKY)
+   -------------------------------------------------------------------------- */
+.redmagic-category-nav {
+  margin: -1.5rem auto 3.5rem auto;
+  max-width: 960px;
+  padding: 0.6rem;
+  background: rgba(14, 18, 26, 0.88);
+  border: 1px solid rgba(0, 240, 255, 0.28);
+  border-radius: 40px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(0, 240, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 40;
+}
+
+.category-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  font-family: var(--font-retro);
+  font-size: 0.65rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.25s var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-tab-btn:hover {
+  color: #ffffff;
+  border-color: rgba(0, 240, 255, 0.4);
+  background: rgba(0, 240, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.category-tab-btn.active {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(255, 42, 85, 0.2) 100%);
+  border: 1px solid var(--arcade-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   7. TARJETAS DE PRODUCTOS CON 3D TILT Y BORDE NEÓN
+   -------------------------------------------------------------------------- */
+.product-card {
+  background: var(--bg-card) !important;
+  border: 1px solid rgba(0, 240, 255, 0.18) !important;
+  border-radius: 12px !important;
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease !important;
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de brillo de vidrio holográfico al pasar el mouse */
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg, 
+    transparent 35%, 
+    rgba(0, 240, 255, 0.12) 48%, 
+    rgba(255, 42, 85, 0.12) 52%, 
+    transparent 65%
+  );
+  transform: rotate(25deg) translateY(-100%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.product-card:hover::after {
+  transform: rotate(25deg) translateY(100%);
+}
+
+.product-card:hover {
+  border-color: var(--arcade-cyan) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 240, 255, 0.35) !important;
+}
+
+.card-title {
+  color: #ffffff !important;
+}
+
+.card-title:hover {
+  color: var(--arcade-cyan) !important;
+  text-shadow: 0 0 10px var(--arcade-cyan);
+}
+
+.card-price {
+  color: var(--arcade-gold) !important;
+  font-family: var(--font-retro);
+  font-size: 1.15rem !important;
+  text-shadow: 0 0 10px rgba(255, 190, 11, 0.5);
+}
+
+.tag-platform {
+  background: rgba(0, 240, 255, 0.2) !important;
+  border: 1px solid var(--arcade-cyan) !important;
+  color: var(--arcade-cyan) !important;
+  font-family: var(--font-retro);
+  font-size: 0.6rem !important;
+}
+
+.tag-year {
+  background: rgba(255, 42, 85, 0.2) !important;
+  border: 1px solid var(--arcade-red) !important;
+  color: #ff859d !important;
+  font-family: var(--font-retro);
+  font-size: 0.6rem !important;
+}
+
+.btn-add-cart {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(0, 240, 255, 0.25) 100%) !important;
+  border: 1px solid var(--arcade-cyan) !important;
+  color: #ffffff !important;
+}
+
+.btn-add-cart:hover {
+  background: var(--arcade-cyan) !important;
+  color: #07090e !important;
+  font-weight: 700;
+  box-shadow: 0 0 20px var(--arcade-cyan) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. ANIMACIONES DE ENTRADA AL HACER SCROLL (SCROLL-TRIGGER)
+   -------------------------------------------------------------------------- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays escalonados para la cuadrícula */
+.product-card:nth-child(1) { transition-delay: 0.05s; }
+.product-card:nth-child(2) { transition-delay: 0.10s; }
+.product-card:nth-child(3) { transition-delay: 0.15s; }
+.product-card:nth-child(4) { transition-delay: 0.20s; }
+.product-card:nth-child(5) { transition-delay: 0.25s; }
+.product-card:nth-child(6) { transition-delay: 0.30s; }
+
+/* --------------------------------------------------------------------------
+   9. CAJA DE VALORES Y SECCIÓN HISTORIA
+   -------------------------------------------------------------------------- */
+.feature-box {
+  background: rgba(14, 18, 26, 0.85) !important;
+  border: 1px solid rgba(0, 240, 255, 0.2) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.feature-box:hover {
+  border-color: var(--arcade-red) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 42, 85, 0.3) !important;
+  transform: translateY(-6px);
+}
+
+.history-intro-card {
+  background: rgba(14, 18, 26, 0.9) !important;
+  border: 1px solid rgba(0, 240, 255, 0.3) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 240, 255, 0.2) !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. MEDIA QUERIES RESPONSIVAS
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .hero-banner-card h1 {
+    font-size: 2rem !important;
+  }
+  .retro-hud-bar {
+    font-size: 0.52rem;
+    padding: 0.5rem 1rem;
+  }
+  .category-tab-btn {
+    font-size: 0.55rem;
+    padding: 0.5rem 0.9rem;
+  }
+  .pacman-world {
+    opacity: 0.75;
+  }
+}

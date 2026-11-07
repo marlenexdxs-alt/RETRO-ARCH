@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras · RetroArch</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/retro-cyber.css">
+</head>
+<body>
+
+  <!-- Filtro CRT Scanlines y Viñeteado -->
+  <div class="crt-overlay" id="crt-overlay"></div>
+  <div class="crt-vignette"></div>
+
+  <!-- ==========================================
+       BARRA DE NAVEGACIÓN SUPERIOR FIJA (XMB PS3)
+       ========================================== -->
+  <header class="xmb-navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">👾</div>
+        <span>RetroArch</span>
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir Menú">☰</button>
+
+      <nav class="xmb-menu-wrapper" id="xmb-menu-wrapper">
+        <ul class="xmb-nav-list">
+          <li><a href="index.html" class="xmb-link"><span class="link-icon">🏠</span> Inicio</a></li>
+          <li><a href="catalogo.html?plataforma=PS1" class="xmb-link"><span class="link-icon">💿</span> PS1</a></li>
+          <li><a href="catalogo.html?plataforma=PS2" class="xmb-link"><span class="link-icon">📀</span> PS2</a></li>
+          <li><a href="catalogo.html?plataforma=PS3" class="xmb-link"><span class="link-icon">💎</span> PS3</a></li>
+          <li><a href="catalogo.html?plataforma=PS4" class="xmb-link"><span class="link-icon">⚡</span> PS4</a></li>
+          <li><a href="catalogo.html?plataforma=PS5" class="xmb-link"><span class="link-icon">🚀</span> PS5</a></li>
+          <li><a href="catalogo.html?plataforma=Retro" class="xmb-link"><span class="link-icon">🕹️</span> Retro</a></li>
+          <li><a href="historia.html" class="xmb-link"><span class="link-icon">📜</span> Historia</a></li>
+          <li><a href="catalogo.html?categoria=Accesorio" class="xmb-link"><span class="link-icon">🎧</span> Accesorios</a></li>
+          <li>
+            <a href="favoritos.html" class="xmb-link">
+              <span class="link-icon">❤️</span> Favoritos
+              <span id="fav-count" class="badge-count">0</span>
+            </a>
+          </li>
+          <li>
+            <a href="carrito.html" class="xmb-link active">
+              <span class="link-icon">🛒</span> Carrito
+              <span id="cart-count" class="badge-count">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="catalogo.html" class="btn-nav-outline">Todos</a>
+        <a href="nosotros.html" class="btn-nav-outline">Nosotros</a>
+        <a href="contacto.html" class="btn-nav-outline">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       VISTA DEL CARRITO DE COMPRAS
+       ========================================== -->
+  <main class="container section">
+    <div class="section-header">
+      <h1 class="section-title">
+        <span class="section-title-icon">🛒</span> Tu Carrito de Compras
+      </h1>
+      <p class="section-subtitle">
+        Gestiona las consolas, títulos y accesorios que has seleccionado para tu inventario.
+      </p>
+    </div>
+
+    <div class="cart-layout">
+      <!-- Lista de Ítems del Carrito -->
+      <div id="cart-items-container" class="cart-items-container">
+        <!-- Renderizado dinámicamente por js/carrito.js -->
+      </div>
+
+      <!-- Resumen del Pedido -->
+      <aside id="cart-summary-box" class="cart-summary-card">
+        <h2 class="summary-title">Resumen de la Orden</h2>
+
+        <div class="summary-row">
+          <span>Subtotal estimado:</span>
+          <strong id="summary-subtotal">$0 USD</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Envío demostrativo:</span>
+          <strong id="summary-shipping" style="color: #86efac;">GRATIS</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Impuestos incluidos:</span>
+          <span>$0.00</span>
+        </div>
+
+        <div class="summary-row total-row">
+          <span>Total:</span>
+          <span id="summary-total" class="total-amount">$0 USD</span>
+        </div>
+
+        <div class="cart-actions">
+          <button id="btn-checkout" class="btn-neon" type="button" style="width: 100%;">
+            💳 Finalizar Pedido
+          </button>
+          <button id="btn-empty-cart" class="btn-neon-secondary btn-reset-filters" type="button" style="width: 100%; margin-top: 0;">
+            🗑️ Vaciar Carrito
+          </button>
+          <a href="catalogo.html" class="btn-nav-outline" style="text-align: center; display: block; margin-top: 0.5rem;">
+            ← Seguir Comprando
+          </a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       MODAL DE CONFIRMACIÓN DE COMPRA SIMULADA
+       ========================================== -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-card">
+      <div class="modal-icon">🎉</div>
+      <h2 class="modal-title">¡PEDIDO SIMULADO CON ÉXITO!</h2>
+      <p class="modal-desc">
+        Has completado la compra ficticia de <strong id="checkout-modal-items-count">0</strong> artículos por un monto de <strong id="checkout-modal-total">$0 USD</strong>.
+        <br><br>
+        <em>Esta es una tienda web demostrativa para un proyecto estudiantil. No se ha realizado ningún cobro real ni envío físico.</em>
+      </p>
+      <button class="btn-neon" id="btn-close-modal" type="button">
+        Entendido / Volver al Inicio
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PIE DE PÁGINA (FOOTER)
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-disclaimer">
+        RetroArch · Proyecto demostrativo y educativo · Catálogo de emulación y consolas retro.
+      </p>
+      <p class="footer-sub">
+        Inspirado en la interfaz XMB de PlayStation 3 y RetroArch. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/retro-engine.js"></script>
+</body>
+</html>

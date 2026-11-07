@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto · RetroArch</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/retro-cyber.css">
+</head>
+<body>
+
+  <!-- Filtro CRT Scanlines y Viñeteado -->
+  <div class="crt-overlay" id="crt-overlay"></div>
+  <div class="crt-vignette"></div>
+
+  <!-- ==========================================
+       BARRA DE NAVEGACIÓN SUPERIOR FIJA (XMB PS3)
+       ========================================== -->
+  <header class="xmb-navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">👾</div>
+        <span>RetroArch</span>
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir Menú">☰</button>
+
+      <nav class="xmb-menu-wrapper" id="xmb-menu-wrapper">
+        <ul class="xmb-nav-list">
+          <li><a href="index.html" class="xmb-link"><span class="link-icon">🏠</span> Inicio</a></li>
+          <li><a href="catalogo.html?plataforma=PS1" class="xmb-link"><span class="link-icon">💿</span> PS1</a></li>
+          <li><a href="catalogo.html?plataforma=PS2" class="xmb-link"><span class="link-icon">📀</span> PS2</a></li>
+          <li><a href="catalogo.html?plataforma=PS3" class="xmb-link"><span class="link-icon">💎</span> PS3</a></li>
+          <li><a href="catalogo.html?plataforma=PS4" class="xmb-link"><span class="link-icon">⚡</span> PS4</a></li>
+          <li><a href="catalogo.html?plataforma=PS5" class="xmb-link"><span class="link-icon">🚀</span> PS5</a></li>
+          <li><a href="catalogo.html?plataforma=Retro" class="xmb-link"><span class="link-icon">🕹️</span> Retro</a></li>
+          <li><a href="historia.html" class="xmb-link"><span class="link-icon">📜</span> Historia</a></li>
+          <li><a href="catalogo.html?categoria=Accesorio" class="xmb-link"><span class="link-icon">🎧</span> Accesorios</a></li>
+          <li>
+            <a href="favoritos.html" class="xmb-link">
+              <span class="link-icon">❤️</span> Favoritos
+              <span id="fav-count" class="badge-count">0</span>
+            </a>
+          </li>
+          <li>
+            <a href="carrito.html" class="xmb-link">
+              <span class="link-icon">🛒</span> Carrito
+              <span id="cart-count" class="badge-count">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="catalogo.html" class="btn-nav-outline">Todos</a>
+        <a href="nosotros.html" class="btn-nav-outline">Nosotros</a>
+        <a href="contacto.html" class="btn-nav-outline" style="border-color: var(--neon-glow); color: #fff;">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       VISTA DE CONTACTO
+       ========================================== -->
+  <main class="container section">
+    <div class="section-header">
+      <h1 class="section-title">
+        <span class="section-title-icon">✉️</span> Contáctanos
+      </h1>
+      <p class="section-subtitle">
+        ¿Tienes sugerencias sobre consolas retro o dudas sobre la demo estudiantil? Envíanos un mensaje.
+      </p>
+    </div>
+
+    <div class="contact-layout">
+      <!-- Panel de Información Lateral -->
+      <div class="contact-info-panel">
+        <div class="contact-card-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h3 style="color: #fff; font-size: 1rem; margin-bottom: 0.25rem;">Ubicación Ficticia</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Laboratorio de Desarrollo Web Estudiantil · Pixel City</p>
+          </div>
+        </div>
+
+        <div class="contact-card-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <h3 style="color: #fff; font-size: 1rem; margin-bottom: 0.25rem;">Correo Demostrativo</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">contacto@retroarch-demo.edu</p>
+          </div>
+        </div>
+
+        <div class="contact-card-item">
+          <div class="contact-icon">⚡</div>
+          <div>
+            <h3 style="color: #fff; font-size: 1rem; margin-bottom: 0.25rem;">Aviso del Proyecto</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Formulario con validación puramente en cliente JavaScript. No se realizan peticiones HTTP a servidores externos.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario de Contacto -->
+      <form id="contact-form" novalidate>
+        <!-- Nombre -->
+        <div class="form-group">
+          <label class="form-label" for="nombre">Nombre Completo *</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            class="form-control" 
+            placeholder="Ej: Kratos de Esparta"
+            required
+          >
+          <span class="error-message" id="error-nombre"></span>
+        </div>
+
+        <!-- Correo Electrónico -->
+        <div class="form-group">
+          <label class="form-label" for="email">Correo Electrónico *</label>
+          <input 
+            type="email" 
+            id="email" 
+            class="form-control" 
+            placeholder="Ej: jugador1@retroarch.com"
+            required
+          >
+          <span class="error-message" id="error-email"></span>
+        </div>
+
+        <!-- Asunto -->
+        <div class="form-group">
+          <label class="form-label" for="asunto">Asunto *</label>
+          <input 
+            type="text" 
+            id="asunto" 
+            class="form-control" 
+            placeholder="Ej: Consulta sobre catálogo de PlayStation 2"
+            required
+          >
+          <span class="error-message" id="error-asunto"></span>
+        </div>
+
+        <!-- Mensaje -->
+        <div class="form-group">
+          <label class="form-label" for="mensaje">Mensaje *</label>
+          <textarea 
+            id="mensaje" 
+            rows="5" 
+            class="form-control" 
+            placeholder="Escribe aquí tu consulta o comentario para el equipo..."
+            required
+          ></textarea>
+          <span class="error-message" id="error-mensaje"></span>
+        </div>
+
+        <button type="submit" class="btn-neon" style="width: 100%; margin-top: 1rem;">
+          ✉️ Enviar Mensaje Demostrativo
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       MODAL DE CONFIRMACIÓN DE ENVÍO
+       ========================================== -->
+  <div class="modal-overlay" id="contact-success-modal">
+    <div class="modal-card">
+      <div class="modal-icon">📬</div>
+      <h2 class="modal-title">¡MENSAJE ENVIADO!</h2>
+      <p class="modal-desc">
+        Gracias, <strong id="contact-modal-sender">Jugador</strong>. Hemos recibido tu mensaje en la simulación de contacto.
+        <br><br>
+        <em>(Nota académica: Esta es una demostración en frontend puro; ningún dato personal ha sido transmitido por internet).</em>
+      </p>
+      <button class="btn-neon" id="btn-close-contact-modal" type="button">
+        Aceptar
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PIE DE PÁGINA (FOOTER)
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-disclaimer">
+        RetroArch · Proyecto demostrativo y educativo · Catálogo de emulación y consolas retro.
+      </p>
+      <p class="footer-sub">
+        Inspirado en la interfaz XMB de PlayStation 3 y RetroArch. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/contacto.js"></script>
+  <script src="js/retro-engine.js"></script>
+</body>
+</html>

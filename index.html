@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RetroArch · Tienda Retro y Emulación</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/retro-cyber.css">
+  <link rel="stylesheet" href="css/arcade-theater.css">
+</head>
+<body>
+
+  <!-- Filtro CRT Scanlines y Viñeteado de TV clásica (Toggleable) -->
+  <div class="crt-overlay" id="crt-overlay"></div>
+  <div class="crt-vignette"></div>
+
+  <!-- ==========================================
+       BARRA DE NAVEGACIÓN SUPERIOR FIJA (XMB PS3)
+       ========================================== -->
+  <header class="xmb-navbar">
+    <div class="nav-inner">
+      <!-- Logo RetroArch -->
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">👾</div>
+        <span>RetroArch</span>
+      </a>
+
+      <!-- Botón Móvil -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir Menú">☰</button>
+
+      <!-- Menú Horizontal XMB -->
+      <nav class="xmb-menu-wrapper" id="xmb-menu-wrapper">
+        <ul class="xmb-nav-list">
+          <li><a href="index.html" class="xmb-link active"><span class="link-icon">🏠</span> Inicio</a></li>
+          <li><a href="catalogo.html?plataforma=PS1" class="xmb-link"><span class="link-icon">💿</span> PS1</a></li>
+          <li><a href="catalogo.html?plataforma=PS2" class="xmb-link"><span class="link-icon">📀</span> PS2</a></li>
+          <li><a href="catalogo.html?plataforma=PS3" class="xmb-link"><span class="link-icon">💎</span> PS3</a></li>
+          <li><a href="catalogo.html?plataforma=PS4" class="xmb-link"><span class="link-icon">⚡</span> PS4</a></li>
+          <li><a href="catalogo.html?plataforma=PS5" class="xmb-link"><span class="link-icon">🚀</span> PS5</a></li>
+          <li><a href="catalogo.html?plataforma=Retro" class="xmb-link"><span class="link-icon">🕹️</span> Retro</a></li>
+          <li><a href="historia.html" class="xmb-link"><span class="link-icon">📜</span> Historia</a></li>
+          <li><a href="catalogo.html?categoria=Accesorio" class="xmb-link"><span class="link-icon">🎧</span> Accesorios</a></li>
+          <li>
+            <a href="favoritos.html" class="xmb-link">
+              <span class="link-icon">❤️</span> Favoritos
+              <span id="fav-count" class="badge-count">0</span>
+            </a>
+          </li>
+          <li>
+            <a href="carrito.html" class="xmb-link">
+              <span class="link-icon">🛒</span> Carrito
+              <span id="cart-count" class="badge-count">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Enlaces Auxiliares a la Derecha -->
+      <div class="nav-actions">
+        <a href="catalogo.html" class="btn-nav-outline">Todos</a>
+        <a href="nosotros.html" class="btn-nav-outline">Nosotros</a>
+        <a href="contacto.html" class="btn-nav-outline">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       BARRA HUD RETRO ESTILO REDMAGIC (STATUS, MONEDAS & CRT)
+       ========================================== -->
+  <div class="retro-hud-bar">
+    <div class="hud-group">
+      <div class="hud-item">
+        <span class="hud-dot"></span>
+        <span>CORE: RETROARCH-OS v4.2 [ONLINE]</span>
+      </div>
+      <div class="hud-item" style="color: var(--arcade-gold);">
+        <span>🪙 CREDITS:</span>
+        <span id="hud-credits-count">04</span>
+      </div>
+    </div>
+    <div class="hud-group">
+      <button class="hud-btn hud-coin-btn" id="hud-btn-coin" title="Insertar Moneda Arcade">
+        <span>🪙</span> INSERT COIN
+      </button>
+      <button class="hud-btn" id="hud-btn-crt" title="Alternar filtro CRT">
+        <span>📺</span> CRT: ON
+      </button>
+      <button class="hud-btn" id="hud-btn-sfx" title="Alternar sonido retro">
+        <span>🔊</span> SFX: ON
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       BANNER PRINCIPAL CINEMÁTICO: VIDEO DE FONDO + CANVAS 3D
+       ========================================== -->
+  <section class="hero-banner">
+    <!-- Video de fondo + Canvas Horizon 3D -->
+    <div class="hero-video-container">
+      <video class="hero-video-bg" autoplay muted loop playsinline poster="img/banner.jpg">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-retro-video-game-screens-41484-large.mp4" type="video/mp4">
+      </video>
+      <canvas id="retro-horizon-canvas"></canvas>
+      <div class="hero-video-overlay"></div>
+    </div>
+
+    <!-- Caja central RedMagic / RetroArch -->
+    <div class="hero-banner-card">
+      <span class="badge-retro">★ RETROARCH ARCADE & MULTI-SYSTEM CORE ★</span>
+      <h1 class="pixel-font">RetroArch</h1>
+      <p>Preservación digital, consolas legendarias de 8 y 16 bits y la evolución completa de PlayStation.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="catalogo.html" class="btn-neon">
+          <span>🚀</span> Explorar catálogo
+        </a>
+        <a href="historia.html" class="btn-neon" style="background: rgba(0, 240, 255, 0.12) !important; border: 1px solid var(--arcade-cyan) !important; color: #ffffff !important;">
+          <span>📜</span> Crónicas Retro
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       NAVEGADOR DE CATEGORÍAS FLUIDO ESTILO REDMAGIC
+       ========================================== -->
+  <div class="redmagic-category-nav">
+    <button class="category-tab-btn active" data-filter="all">
+      <span>🕹️</span> TODAS LAS CATEGORÍAS
+    </button>
+    <button class="category-tab-btn" data-filter="consolas">
+      <span>🎮</span> CONSOLAS DESTACADAS
+    </button>
+    <button class="category-tab-btn" data-filter="juegos">
+      <span>⭐</span> JUEGOS LEGENDARIOS
+    </button>
+    <button class="category-tab-btn" data-filter="accesorios">
+      <span>🎧</span> ACCESORIOS Y MANDOS
+    </button>
+    <a href="#arcade-theater" class="category-tab-btn" style="border-color: rgba(255, 42, 85, 0.45); color: #ffbe0b;">
+      <span>🕹️</span> ARCADE THEATER
+    </a>
+  </div>
+
+  <!-- ==========================================
+       SECCIÓN: CONSOLAS DESTACADAS (12 Consolas)
+       ========================================== -->
+  <main class="container">
+    <section class="section" id="consolas-section">
+      <div class="section-header-row">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-title-icon">🕹️</span> Consolas Destacadas
+          </h2>
+          <p class="section-subtitle">
+            Desde la revolución de 32 bits de Sony hasta la nueva generación y clásicos de Nintendo, Sega y Atari.
+          </p>
+        </div>
+        <a href="catalogo.html?categoria=Consola" class="btn-nav-outline">Ver todas las consolas →</a>
+      </div>
+
+      <!-- Tarjetas de PS1, PS2, PS3, PS4, PS5, PSP, Switch, N64, SNES, Genesis, Game Boy y Atari -->
+      <div class="product-grid" id="consolas-grid">
+        <!-- Renderizado dinámicamente con js/app.js -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN: JUEGOS DESTACADOS (8 Títulos)
+         ========================================== -->
+    <section class="section" id="juegos-section">
+      <div class="section-header-row">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-title-icon">⭐</span> Juegos Destacados
+          </h2>
+          <p class="section-subtitle">
+            Obras maestras que definieron generaciones de jugadores en todo el mundo.
+          </p>
+        </div>
+        <a href="catalogo.html?categoria=Juego" class="btn-nav-outline">Ver todos los juegos →</a>
+      </div>
+
+      <div class="product-grid" id="juegos-destacados-grid">
+        <!-- Renderizado dinámicamente con js/app.js -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN: ACCESORIOS DESTACADOS (4 Productos)
+         ========================================== -->
+    <section class="section" id="accesorios-section">
+      <div class="section-header-row">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-title-icon">🎧</span> Accesorios Destacados
+          </h2>
+          <p class="section-subtitle">
+            Mandos originales, memorias, cables de alta definición y periféricos oficiales.
+          </p>
+        </div>
+        <a href="catalogo.html?categoria=Accesorio" class="btn-nav-outline">Ver accesorios →</a>
+      </div>
+
+      <div class="product-grid" id="accesorios-destacados-grid">
+        <!-- Renderizado dinámicamente con js/app.js -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN DESTACADA: HISTORIA RETRO
+         ========================================== -->
+    <section class="section" style="padding-top: 1rem; padding-bottom: 1rem;">
+      <div class="history-intro-card" style="margin-bottom: 0;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <div>
+            <span class="badge-retro">★ CRÓNICAS DEL VIDEOJUEGO ★</span>
+            <h2 class="pixel-font" style="font-size: 1.25rem; color: #fff; margin: 0.5rem 0;">
+              Historia de los Videojuegos Retro
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 680px;">
+              Desde los salones Arcade y la era dorada de 8 y 16 bits, hasta la revolución del CD-ROM con PlayStation y la cultura de preservación digital en RetroArch.
+            </p>
+          </div>
+          <a href="historia.html" class="btn-neon">
+            <span>📜</span> Explorar Historia Retro
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN DE VALORES Y CARACTERÍSTICAS
+         ========================================== -->
+    <section class="section" style="padding-top: 1rem; padding-bottom: 5rem;">
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon">🛡️</div>
+          <h3>Calidad Demostrativa</h3>
+          <p>Catálogo interactivo con fichas técnicas completas de cada era dorada de los videojuegos.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">💾</div>
+          <h3>Persistencia Local</h3>
+          <p>Tu carrito de compras y lista de favoritos se guardan automáticamente en tu navegador.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">🌌</div>
+          <h3>Experiencia RetroArch</h3>
+          <p>Estética inmersiva inspirada en los gabinetes arcade clásicos, XMB y las pantallas CRT.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">⚡</div>
+          <h3>Carga Ultrarrápida</h3>
+          <p>Desarrollado con estándares web puros: HTML5 semántico, CSS3 moderno y JavaScript ES6+.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       ZONA ARCADE THEATER: SIMULADOR DE CLÁSICOS EN VIVO
+       ========================================== -->
+  <section class="arcade-theater-section" id="arcade-theater">
+    <div class="container">
+      <div class="arcade-marquee-header">
+        <span class="badge-retro">★ SALA DE RECREATIVAS 1980 - 1985 ★</span>
+        <h2 class="arcade-marquee-title">🕹️ RETROARCH ARCADE THEATER 🕹️</h2>
+        <p class="arcade-marquee-sub">
+          Disfruta de las animaciones en tiempo real de los hitos que cambiaron la historia de los videojuegos: Pac-Man comiendo pellets y cazando fantasmas, Donkey Kong lanzando barriles a Mario en las vigas y Space Invaders defendiendo la Tierra.
+        </p>
+      </div>
+
+      <!-- Gabinete Arcade Realista -->
+      <div class="arcade-cabinet-wrapper">
+        <!-- Marquesina Superior con Marcador -->
+        <div class="cabinet-marquee">
+          <div class="cabinet-brand" id="cabinet-active-game">
+            🟡 PAC-MAN
+          </div>
+          <div class="cabinet-score-hud">
+            <div class="score-hud-item">1UP: <span id="cabinet-1up-score">02540</span></div>
+            <div class="score-hud-item">HIGH: <span>99990</span></div>
+          </div>
+        </div>
+
+        <!-- Barra de Progreso del Ciclo de 20s -->
+        <div class="cycle-progress-bar">
+          <div class="cycle-progress-fill" id="cycle-progress-fill"></div>
+        </div>
+
+        <!-- Pantalla CRT con Scanlines y Cristal Curvado -->
+        <div class="cabinet-screen-bezel">
+          <div class="arcade-screen-container">
+            <canvas id="arcade-theater-canvas"></canvas>
+            <div class="arcade-screen-scanlines"></div>
+            <div class="arcade-screen-glass"></div>
+          </div>
+        </div>
+
+        <!-- Panel de Control y Selector de Juegos -->
+        <div class="cabinet-control-panel">
+          <div class="game-switcher-tabs">
+            <button class="game-tab-btn active" data-game-index="0">
+              <span>🟡</span> Pac-Man (20s)
+            </button>
+            <button class="game-tab-btn" data-game-index="1">
+              <span>🦍</span> Donkey Kong
+            </button>
+            <button class="game-tab-btn" data-game-index="2">
+              <span>👾</span> Space Invaders
+            </button>
+          </div>
+
+          <div class="cabinet-meta-controls">
+            <button class="hud-btn" id="btn-arcade-pause">
+              <span>⏸️</span> PAUSAR
+            </button>
+            <div class="arcade-status-pill">
+              <span class="arcade-status-dot"></span>
+              <span>SIMULADOR 60FPS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       PIE DE PÁGINA (FOOTER)
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-disclaimer">
+        RetroArch · Proyecto demostrativo y educativo · Catálogo de emulación y consolas retro.
+      </p>
+      <p class="footer-sub">
+        Inspirado en la preservación del software histórico, gabinetes Arcade y sistemas PlayStation, Nintendo, Sega y Atari.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Contenedor para notificaciones Toast -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/productos.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/retro-engine.js"></script>
+  <script src="js/arcade-theater.js"></script>
+</body>
+</html>
